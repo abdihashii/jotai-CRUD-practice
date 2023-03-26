@@ -1,5 +1,6 @@
 import React, { FormEvent } from 'react';
 import { atom, useAtom } from 'jotai';
+import { atomWithStorage } from 'jotai/utils'
 
 type Todo = {
   id: number | null,
@@ -9,7 +10,7 @@ type Todo = {
 type Todos = Todo[];
 
 const todoAtom = atom<Todo>({ id: null, title: '' });
-const todoListAtom = atom<Todos>([]);
+const todoListAtom = atomWithStorage<Todos>('todoList', []);
 
 const TodoComponent = ({ todoItem }: { todoItem: Todo }) => {
   return (
